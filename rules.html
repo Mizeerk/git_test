@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rules · Delve</title>
+  <meta name="description" content="The rules of the hourly drop: joining, the pot, the seed, the drop and the payout.">
+  <meta property="og:title" content="Delve">
+  <meta property="og:description" content="Drop your bag into the shaft. Deepest hero collects the hour's fees.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main" class="gut">
+    <div class="page-head">
+      <div class="kicker">rules</div>
+      <h1>What the program enforces.</h1>
+      <p>Until the deploy key is frozen, the program can still be upgraded. The notes at the end explain what that means for you.</p>
+    </div>
+    <ol class="rules">
+      <li><span class="n">01</span><div><h2>Getting a hero</h2><p>Deposit at least <span data-cfg="minBag"></span> tokens into the game vault and a hero is created for your wallet, with a name derived from your address. Only that same wallet can withdraw, it can do so at any moment, and a withdrawal always takes the full bag. Withdrawing closes the hero and refunds its rent.</p></div></li>
+      <li><span class="n">02</span><div><h2>Hours</h2><p>Each round runs for a fixed number of Solana slots, which works out to roughly sixty minutes. A hero takes part in a round only if it was already in when that round started. Topping up counts as a fresh entry, so the hero skips the round underway.</p></div></li>
+      <li><span class="n">03</span><div><h2>Where the pot comes from</h2><p>Creator fees from the coin flow to the game account. <span data-cfg="potShare"></span>% are booked to the upcoming pot and <span data-cfg="devShare"></span>% to the dev wallet. The moment an hour closes its pot is frozen, and anything that arrives later counts toward the following hour.</p></div></li>
+      <li><span class="n">04</span><div><h2>Randomness</h2><p>After an hour's final slot, anyone may seal it. Sealing reads the hash of the first slot at or past the end from Solana's SlotHashes sysvar, and that hash becomes the seed. It cannot be known while the hour is running. The leader producing that slot could in principle try to steer it; this is the standard trade-off for on-chain randomness.</p></div></li>
+      <li><span class="n">05</span><div><h2>The drop</h2><p>A hero's landing depth comes from sha256(seed, owner) combined with its weight, which is the bag times a bonus running from 1 to 2 over <span data-cfg="bonusDays"></span> days. It is a weighted race: your chance equals your weight divided by everyone's weight together, so splitting a bag across wallets gives no edge. Topping up keeps your earned token-time but spreads it over more tokens.</p></div></li>
+      <li><span class="n">06</span><div><h2>Submitting heroes</h2><p>For a window of about half an hour after a seal, anyone can submit heroes and the program remembers the deepest it has seen. A keeper bot submits the strongest candidates, and while the window is open you can submit your own from the home page.</p></div></li>
+      <li><span class="n">07</span><div><h2>Payout</h2><p>When the window closes, anyone can settle the hour and the frozen pot is sent to the owner of the deepest hero. If no hero qualified or the transfer fails, the pot carries forward. An hour that is not sealed within a few minutes of ending loses its seed and is voided, and its pot carries forward too.</p></div></li>
+    </ol>
+    <div class="card notes">
+      <h2 class="h2" style="font-size:24px">Before you put tokens in.</h2>
+      <ul>
+        <li>Until the program is frozen, whoever holds the deploy key could change any rule here, including how the vault pays out.</li>
+        <li>The deploy key can redirect the dev share to a different wallet and can renounce itself permanently. No admin instruction touches the vault or the pots.</li>
+        <li>Tokens in the vault keep their market risk. Locking them does not protect you from the coin's price.</li>
+        <li>Fees reach the game only because the creator points the coin's fee sharing at the game account, and the creator can change that.</li>
+      </ul>
+    </div>
+    <p class="mute" style="margin-top:28px;font-size:14px">The full instruction list is on the <a class="torch" href="program.html">program page</a>.</p>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/sim.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>UI.mount("rules"); Dungeon.start();</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Program · Delve</title>
+  <meta name="description" content="The on-chain program, instruction by instruction, and the formula behind each drop.">
+  <meta property="og:title" content="Delve">
+  <meta property="og:description" content="Drop your bag into the shaft. Deepest hero collects the hour's fees.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main" class="gut">
+    <div class="page-head">
+      <div class="kicker">program</div>
+      <h1>Every instruction, one by one.</h1>
+      <p><span id="pid" class="mono" style="font-size:14px;word-break:break-all"></span></p>
+    </div>
+    <div class="ix">
+      <div class="ix-row"><code>join(amount)</code><span class="who">you</span><p>Transfers tokens from your wallet to the vault and creates your hero or grows it. The bag is whatever actually arrived.</p></div>
+      <div class="ix-row"><code>leave</code><span class="who">you</span><p>Returns your whole bag and closes the hero. Allowed at any time.</p></div>
+      <div class="ix-row"><code>sync</code><span class="who">anyone</span><p>Books newly arrived fees: <span data-cfg="devShare"></span>% to the dev, <span data-cfg="potShare"></span>% to the pot.</p></div>
+      <div class="ix-row"><code>seal</code><span class="who">anyone</span><p>After an hour's last slot: reads the seed from SlotHashes, freezes the pot and starts the next hour.</p></div>
+      <div class="ix-row"><code>descend(heroes…)</code><span class="who">anyone</span><p>During the window after a seal: computes each qualifying hero's key and records the deepest.</p></div>
+      <div class="ix-row"><code>settle</code><span class="who">anyone</span><p>After the window: sends the frozen pot to the deepest hero's owner, or carries it forward.</p></div>
+      <div class="ix-row"><code>claim_dev</code><span class="who">anyone</span><p>Sends the booked dev share to the dev wallet.</p></div>
+      <div class="ix-row"><code>init · set_mint · set_dev · renounce_admin</code><span class="who">deploy key</span><p>Creates the game, sets the coin once (rejected if the mint has freeze, tax or clawback powers), moves the dev share, and renounces the key.</p></div>
+    </div>
+
+    <h2 class="h2" style="margin-top:72px">Accounts.</h2>
+    <div class="ix">
+      <div class="ix-row"><code>game</code><span class="who">PDA</span><p>Seeds ["game"]. Fees, pots, the open hour and the hour being settled.</p></div>
+      <div class="ix-row"><code>history</code><span class="who">PDA</span><p>Seeds ["history"]. The most recent 24 winners.</p></div>
+      <div class="ix-row"><code>hero</code><span class="who">PDA</span><p>Seeds ["hero", owner]. Bag, token-time start and wins.</p></div>
+      <div class="ix-row"><code>vault</code><span class="who">ATA</span><p>The game's associated token account for the coin.</p></div>
+    </div>
+
+    <h2 class="h2" style="margin-top:72px">The key.</h2>
+    <p class="soft" style="margin-top:14px;max-width:720px">Each hero draws an exponential with rate equal to its weight; the smallest draw lands deepest. On chain this is done in fixed-point integers. The demo on this site uses the same formula in floating point.</p>
+<pre class="code"><span class="c">// u in (0, 1] from the hash; -log2(u) is an exponential draw</span>
+u      = (first bytes of sha256(seed || owner) + 1) / 2^bits
+e      = -log2(u)
+bonus  = 1 + min(age, <span data-cfg="bonusDays"></span> days) / <span data-cfg="bonusDays"></span> days
+weight = bag * bonus
+<span class="c">// smaller key = deeper floor</span>
+key    = e / weight
+P(win) = weight / sum(weight of every hero in the hour)</pre>
+    <p class="mute" style="margin-top:20px;font-size:14px;max-width:720px">Because the seed is public once the hour is sealed, anyone can recompute every hero's key and check the order themselves.</p>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/sim.js"></script>
+  <script src="assets/ui.js"></script>
+  <script>UI.mount("program"); Dungeon.start(); document.getElementById("pid").textContent = SITE.programId ? "Program " + SITE.programId + " · upgradeable by its deploy key until frozen." : "Program not deployed yet. Set programId in assets/config.js once it is.";</script>
+</body>
+</html>

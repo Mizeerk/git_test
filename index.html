@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delve · one hero wins every hour's fees</title>
+  <meta name="description" content="Lock your bag, get a hero, and drop into the shaft every hour. Whoever sinks deepest collects that hour's fees. Pull your tokens out whenever you like.">
+  <meta property="og:title" content="Delve">
+  <meta property="og:description" content="Drop your bag into the shaft. Deepest hero collects the hour's fees.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main">
+    <section class="gut top">
+      <div>
+        <div class="kicker">hourly draw · solana</div>
+        <h1 class="h-hero">Drop your bag into the shaft. Whoever sinks <span class="glow">deepest</span> collects the hour.</h1>
+        <p class="lede">Lock tokens in the vault and a hero is yours. At the end of every hour all heroes fall together, and the one that lands lowest collects <span data-cfg="potShare"></span>% of the creator fees earned that hour. Pull your tokens out whenever you like.</p>
+        <div class="actions">
+          <a class="btn btn-torch" href="#hero">Send a hero down</a>
+          <a class="btn btn-line" href="rules.html">How the drop works</a>
+        </div>
+
+        <div class="card stats" style="margin-top:44px">
+          <div><div class="label">next drop</div><div class="stat-v" id="s-next">–</div></div>
+          <div><div class="label">pot this hour</div><div class="stat-v torch" id="s-pot">–<small>SOL</small></div></div>
+          <div><div class="label">heroes</div><div class="stat-v" id="s-heroes">–</div></div>
+        </div>
+
+        <div style="margin-top:40px">
+          <div class="label">in the dungeon</div>
+          <ul class="feed" id="feed"></ul>
+        </div>
+      </div>
+
+      <div class="card shaft" aria-label="The shaft">
+        <div class="shaft-head">
+          <span class="label">the shaft</span>
+          <span class="label" id="shaft-round"></span>
+        </div>
+        <div class="pit" id="pit"></div>
+        <div class="shaft-foot"><span id="shaft-seed">seed: hash of the first slot after the hour</span></div>
+      </div>
+    </section>
+
+    <section class="gut how">
+      <div>
+        <h2 class="h2">How each hour is decided.</h2>
+        <ol class="steps">
+          <li><span class="n">01</span><p><b>Bag size.</b> Your chance is your bag multiplied by its time bonus, divided by the same number for everyone together. Spreading one bag over several wallets gains you nothing.</p></li>
+          <li><span class="n">02</span><p><b>Staying power.</b> The bonus climbs from ×1 to ×2 across <span data-cfg="bonusDays"></span> days in the vault. Topping up keeps the token-time you already earned, so a larger bag restarts a little lower.</p></li>
+          <li><span class="n">03</span><p><b>Fair randomness.</b> Each hour's seed is the hash of the next Solana slot once the hour closes. Nobody can see it ahead of time, and every hero's landing floor follows from it.</p></li>
+        </ol>
+        <p class="mute" style="margin-top:28px;font-size:14px;max-width:620px"><span data-cfg="potShare"></span>% of the coin's creator fees go into the pots and <span data-cfg="devShare"></span>% to the dev. If an hour has no winner, its pot carries over to the next one.</p>
+      </div>
+      <div class="hero-col" id="hero" style="scroll-margin-top:24px">
+        <div class="card hero-card" id="hero-card"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/sim.js"></script>
+  <script src="assets/ui.js"></script>
+  <script src="assets/home.js"></script>
+</body>
+</html>
