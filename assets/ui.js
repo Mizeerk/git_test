@@ -21,7 +21,8 @@
     { href: "index.html", id: "dungeon", label: "Dungeon" },
     { href: "heroes.html", id: "heroes", label: "Heroes" },
     { href: "rules.html", id: "rules", label: "Rules" },
-    { href: "program.html", id: "program", label: "Program" }
+    { href: "program.html", id: "program", label: "Program" },
+    { href: "cashout.html", id: "cashout", label: "Cash out", soon: true }
   ];
 
   function coinLink() {
@@ -32,7 +33,8 @@
 
   function header(current) {
     var links = PAGES.map(function (p) {
-      return '<a href="' + p.href + '"' + (p.id === current ? ' aria-current="page"' : "") + ">" + p.label + "</a>";
+      return '<a href="' + p.href + '"' + (p.id === current ? ' aria-current="page"' : "") + ">" + p.label +
+        (p.soon && !C.cashoutLive ? ' <span class="soon">soon</span>' : "") + "</a>";
     }).join("");
     var demo = C.demo
       ? '<div class="demo-bar"><div class="gut"><span><b>Demo mode.</b> Heroes, fees and descents are simulated in your browser. No wallet, no real tokens. One hour here lasts ' +

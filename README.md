@@ -12,6 +12,7 @@ The site currently runs in **demo mode**. Heroes, fees and drops are simulated i
 | `heroes.html` | Every hero with bag, time bonus and odds, plus the last 24 winners |
 | `rules.html` | The rules in plain language and the risks to know before joining |
 | `program.html` | The on-chain instructions, accounts and the formula behind each drop |
+| `cashout.html` | Design preview of PayPal cash-out: earnings mockup, 4-step flow, earnings calculator, roadmap, FAQ and a clickable cash-out walkthrough |
 
 ## Run it
 
@@ -50,6 +51,10 @@ assets/heroes.js   heroes page
 assets/style.css   styles
 assets/logo.svg    icon
 ```
+
+## Cash-out preview
+
+The PayPal cash-out page is a design for the dev to build against. While `cashoutLive` is `false` in `assets/config.js`, it is labelled "coming soon" and "preview", the walkthrough uses sample rates and fees, and nothing is sent anywhere. When the real payout backend is ready, wire the confirm step in `assets/cashout.js` to it, set `cashoutLive: true`, and remove the preview labels and sample-data notes.
 
 ## Going live
 

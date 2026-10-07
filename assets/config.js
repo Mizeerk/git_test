@@ -16,6 +16,10 @@ window.SITE = {
   floors: 40,             // depth of the shaft drawing
   bonusDays: 7,           // days for the time bonus to grow from x1 to x2
 
+  // Fiat cash-out. While cashoutLive is false the feature is shown as a labelled preview.
+  cashoutLive: false,
+  cashoutProvider: "PayPal",
+
   // Demo mode: everything is simulated in the browser, no wallet, no real tokens.
   demo: true,
   demoRoundSeconds: 60,   // a demo "hour"

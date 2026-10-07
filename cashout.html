@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cash out · Delve</title>
+  <meta name="description" content="Coming soon: send the fees your hero wins straight to PayPal. Here is how cash-out will work.">
+  <meta property="og:title" content="Delve">
+  <meta property="og:description" content="Drop your bag into the shaft. Deepest hero collects the hour's fees.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main id="main" class="gut">
+    <section class="co-top">
+      <div>
+        <span class="preview-tag"><i></i> coming soon · in development</span>
+        <h1>Win the hour.<br>Cash out to <span class="glow">PayPal</span>.</h1>
+        <p class="lede">We're building a way to send the fees your hero wins straight to your PayPal balance, in dollars. No exchange account, no bridging, no swapping. Here's how it's going to work.</p>
+        <ul class="co-points">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8fd694" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Pick an amount, enter your PayPal email, confirm. That's the whole flow.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8fd694" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>See the rate and every fee up front, before anything moves.</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8fd694" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Keep your bag in the dungeon while you cash out what you've won.</span></li>
+        </ul>
+        <div class="actions">
+          <button class="btn btn-torch" type="button" data-open-flow>Try the cash-out preview</button>
+          <a class="btn btn-line" href="#how">How it works</a>
+        </div>
+      </div>
+
+      <div class="device" aria-label="Preview of the earnings screen">
+        <span class="device-ribbon">preview</span>
+        <div class="bal-label">winnings available</div>
+        <div class="bal" id="dev-bal">1.284<small>SOL</small></div>
+        <div class="bal-fiat" id="dev-fiat">≈ $192.60 USD</div>
+        <svg class="spark" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ffb04a" stop-opacity=".35"/><stop offset="1" stop-color="#ffb04a" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0 60 L30 56 L60 58 L90 44 L120 47 L150 36 L180 39 L210 24 L240 28 L270 14 L300 8 L300 70 L0 70Z" fill="url(#sg)"/>
+          <path d="M0 60 L30 56 L60 58 L90 44 L120 47 L150 36 L180 39 L210 24 L240 28 L270 14 L300 8" fill="none" stroke="#ffb04a" stroke-width="2.2"/>
+        </svg>
+        <div class="dev-rows">
+          <div class="dev-row"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span><div class="t"><div>Won hour 412</div><div>Ashdigger · floor 40</div></div><span class="a plus">+0.412 SOL</span></div>
+          <div class="dev-row"><span class="ic out"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span><div class="t"><div>Cash out to PayPal</div><div>j••••@mail.com</div></div><span class="a">−$58.20</span></div>
+          <div class="dev-row"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span><div class="t"><div>Won hour 398</div><div>Ashdigger · floor 40</div></div><span class="a plus">+0.873 SOL</span></div>
+        </div>
+        <button class="btn btn-torch btn-block" type="button" data-open-flow>Withdraw to PayPal</button>
+        <div class="sample-note">sample data · design preview</div>
+      </div>
+    </section>
+
+    <section class="section" id="how" style="scroll-margin-top:24px">
+      <div class="section-head">
+        <div class="kicker">how it will work</div>
+        <h2 class="h2" style="margin-top:12px">From the dungeon to your PayPal in four steps.</h2>
+      </div>
+      <div class="flow">
+        <div class="card"><span class="n">01</span><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5h3.75a1.75 1.75 0 010 3.5H10.5h3.25a1.75 1.75 0 010 3.5H9.5M12 7.5v1.5M12 16.5V18"/></svg></div><h3>Get $<span data-cfg="ticker"></span></h3><p>Pick up at least <span data-cfg="minBag"></span> tokens. That's the smallest bag that gets a hero.</p></div>
+        <div class="card"><span class="n">02</span><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 018 0v3"/></svg></div><h3>Lock your bag</h3><p>Your tokens go into the vault and a hero is created for you. You can take them back whenever you like.</p></div>
+        <div class="card"><span class="n">03</span><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v13M6.5 11.5L12 17l5.5-5.5"/><path d="M5 20.5h14"/></svg></div><h3>Win the hour</h3><p>Every hour the heroes fall. The deepest one takes <span data-cfg="potShare"></span>% of that hour's creator fees.</p></div>
+        <div class="card"><span class="n">04</span><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6.5" width="19" height="12" rx="2.5"/><circle cx="12" cy="12.5" r="2.6"/><path d="M6 10v5M18 10v5"/></svg></div><h3>Cash out</h3><p>Send your winnings to PayPal as dollars, or keep them in SOL. Your choice, every time.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">play with the numbers</div>
+        <h2 class="h2" style="margin-top:12px">What could your hero earn?</h2>
+        <p>Move the sliders to see how bag size and fee volume change your expected share. It's maths on assumptions you choose, not a forecast.</p>
+      </div>
+      <div class="card calc">
+        <div>
+          <label><div class="row"><span class="label">your bag</span><output id="o-bag"></output></div><input type="range" id="r-bag" min="100000" max="20000000" step="100000" value="2000000"></label>
+          <label><div class="row"><span class="label">all bags in the dungeon</span><output id="o-total"></output></div><input type="range" id="r-total" min="5000000" max="500000000" step="5000000" value="100000000"></label>
+          <label><div class="row"><span class="label">creator fees per hour</span><output id="o-fees"></output></div><input type="range" id="r-fees" min="0.05" max="5" step="0.05" value="0.5"></label>
+          <label><div class="row"><span class="label">SOL price</span><output id="o-price"></output></div><input type="range" id="r-price" min="20" max="500" step="5" value="150"></label>
+        </div>
+        <div>
+          <div class="label">expected winnings per day</div>
+          <div class="est" id="est-usd">$0</div>
+          <div class="est-sub" id="est-sol">0 SOL</div>
+          <div class="review" style="margin-top:22px">
+            <div><span>your odds each hour</span><span id="est-odds">–</span></div>
+            <div><span>pot each hour</span><span id="est-pot">–</span></div>
+            <div><span>expected wins per day</span><span id="est-wins">–</span></div>
+          </div>
+          <p class="fine">Assumes a full time bonus for everyone and steady fee volume. Real results swing a lot hour to hour, fees depend on trading, and the coin's price can fall. Not financial advice.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">roadmap</div>
+        <h2 class="h2" style="margin-top:12px">Where we are.</h2>
+      </div>
+      <ol class="road">
+        <li class="done"><span class="st">done</span><h3>Dungeon demo</h3><p>The hourly drop, odds and payout logic, playable in your browser.</p></li>
+        <li class="now"><span class="st">in progress</span><h3>On-chain program</h3><p>The vault, the seal and the payout running on Solana.</p></li>
+        <li class="next"><span class="st">next</span><h3>Coin launch</h3><p>$<span data-cfg="ticker"></span> goes live and real heroes start falling.</p></li>
+        <li class="next"><span class="st">then</span><h3>PayPal cash-out</h3><p>Winnings to your PayPal balance in a few taps.</p></li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">questions</div>
+        <h2 class="h2" style="margin-top:12px">Cash-out FAQ.</h2>
+      </div>
+      <div class="faq">
+        <details open><summary>Can I cash out to PayPal today?</summary><p>Not yet. Cash-out is in development and this page shows the design. Today the game runs as a demo; winnings will be paid in SOL first, with PayPal coming after.</p></details>
+        <details><summary>Do I need a PayPal account?</summary><p>Yes, a PayPal account in a country where PayPal can receive payouts. You'll also be asked to verify your identity before your first cash-out, as payment providers require.</p></details>
+        <details><summary>What will it cost?</summary><p>The exchange rate and every fee will be shown on the review screen before you confirm. Nothing is taken until you press the button.</p></details>
+        <details><summary>Do I have to leave the dungeon to cash out?</summary><p>No. Cashing out only touches your winnings. Your bag stays locked and your hero keeps falling every hour.</p></details>
+        <details><summary>Can I keep my winnings in SOL instead?</summary><p>Always. PayPal is an option, not a requirement.</p></details>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <span class="preview-tag"><i></i> coming soon</span>
+      <h2 style="margin-top:18px">Your hero falls. Your winnings land.</h2>
+      <p>Get a feel for the dungeon now in the demo, and walk through the cash-out flow before it launches.</p>
+      <div class="actions">
+        <a class="btn btn-torch" href="index.html#hero">Play the demo</a>
+        <button class="btn btn-line" type="button" data-open-flow>Preview cash-out</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="flow" role="dialog" aria-modal="true" aria-labelledby="flow-title">
+    <div class="sheet">
+      <div class="sheet-head"><span class="preview-tag" style="padding:4px 10px;font-size:10px"><i></i> preview</span><button type="button" aria-label="Close" data-close>×</button></div>
+      <div class="dots"><span></span><span></span><span></span><span></span></div>
+      <div id="flow-body"></div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/sim.js"></script>
+  <script src="assets/ui.js"></script>
+  <script src="assets/cashout.js"></script>
+</body>
+</html>
